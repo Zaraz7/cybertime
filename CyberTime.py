@@ -11,6 +11,7 @@ logo = '''
       |__/                      Mini 0.1.0
 
 '''
+print(logo)
 path = 'time.data'
 help = '''
 help        помощь по командам
@@ -44,7 +45,7 @@ def save():
 if os.access(path, os.F_OK) and os.path.getsize(path) > 0:
     sec = load()
 else:
-    print('Data file is not found')
+    print('WARNING: Data файл не найден (если это первый запуск, то игнорируйте это сообщение)')
     sec = time.time()
 
 def start(mod=1):
@@ -77,7 +78,7 @@ def asciiart(text, file='ASCII art letters.txt'):
         for t in text.split('\n')])
     return art
 
-print(logo)
+
 while True:
     cmd = input('{}> '.format(time.ctime(sec))).split()
     try:
