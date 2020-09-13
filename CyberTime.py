@@ -121,6 +121,7 @@ while True:
                 else:
                     print(helpplus)
         elif cmd[0] == 'minus':
+            vel = int(cmd[1])
             if 's' in cmd:
                 sec -= vel
             elif 'm' in cmd:
