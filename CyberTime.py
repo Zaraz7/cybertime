@@ -80,8 +80,8 @@ def asciiart(text, file='ASCII art letters.txt'):
 
 
 while True:
-    cmd = input('{}> '.format(time.ctime(sec))).split()
     try:
+        cmd = input('{}> '.format(time.ctime(sec))).split()
         if cmd[0] == 'exit':
             if 'f' in cmd:
                 break
@@ -149,3 +149,5 @@ while True:
         print('ERROR: Недостаточно аргументов')
     except ValueError:
         print('ERROR: Недопустимое значение')
+    except KeyboardInterrupt:
+        print('\n')
