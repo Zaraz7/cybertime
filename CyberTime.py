@@ -2,6 +2,7 @@
 import time
 import os
 import pickle
+import urwid
 
 logo = '''
    ___     _            _____ _           
@@ -60,25 +61,10 @@ def start(mod=1):
 def real():
     global sec
     sec = time.time()
-
-def asciiart(text, file='ASCII art letters.txt'):
-    conf = open(file).read()
-    """Produces an ascii art representation of text using the conf data"""
-    if isinstance(conf, str):
-        conf = conf.split('\n')
-
-    height, key, data = int(conf[0]), conf[1], conf[2:]
-    figures = dict(map(
-        lambda x: (x, data[key.index(x) * height: (key.index(x) + 1) * height]),
-        key))
-    art = '\n'.join([
-        '\n'.join([
-            ' '.join([figures[x][i] for x in t.lower() if x in figures])
-            for i in range(height)])
-        for t in text.split('\n')])
-    return art
-
-
+##-EXPEREMENTAL 
+def test():
+    pass
+##-
 while True:
     try:
         cmd = input('{}> '.format(time.ctime(sec))).split()
@@ -142,7 +128,7 @@ while True:
         elif cmd[0] == 'start':
             start()
         elif cmd[0] == 'test':
-            asciiart('1')
+            test()
         else:
             print('ERROR: Недопустимая команда')
     except IndexError:
