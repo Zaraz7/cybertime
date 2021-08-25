@@ -3,6 +3,7 @@ import time
 import os
 import pickle
 import urwid
+import sqlite3
 
 logo = '''
    ___     _            _____ _           
@@ -64,6 +65,7 @@ def real():
 ##-EXPEREMENTAL 
 def test():
     print('test')
+    conn = sqlite3.connect("times.db")
     pass
 ##-
 while True:
