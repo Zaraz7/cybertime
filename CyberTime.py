@@ -63,6 +63,7 @@ def real():
     sec = time.time()
 ##-EXPEREMENTAL 
 def test():
+    print('test')
     pass
 ##-
 while True:
