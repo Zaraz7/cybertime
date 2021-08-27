@@ -50,6 +50,8 @@ else:
     print('WARNING: Data файл не найден (если это первый запуск, то игнорируйте это сообщение)')
     sec = time.time()
 
+conn = sqlite3.connect("times.db")
+
 def start(mod=1):
     global sec
     try:
@@ -65,7 +67,10 @@ def real():
 ##-EXPEREMENTAL 
 def test():
     print('test')
-    conn = sqlite3.connect("times.db")
+    pass
+def convert():
+    content = os.listdir('.')
+    print(content)
     pass
 ##-
 while True:
@@ -132,6 +137,8 @@ while True:
             start()
         elif cmd[0] == 'test':
             test()
+        elif cmd[0] =='convert':
+            convert()
         else:
             print('ERROR: Недопустимая команда')
     except IndexError:
