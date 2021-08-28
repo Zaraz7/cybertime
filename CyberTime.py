@@ -39,6 +39,7 @@ def load():
     pickl = pickle.load(file)
     file.close()
     return pickl
+
 def save():
     file=open(path, 'wb')
     pickle.dump(sec, file)
@@ -51,6 +52,9 @@ else:
     sec = time.time()
 
 conn = sqlite3.connect("times.db")
+c = conn.cursor()
+
+#print([c.execute('.tables')])
 
 def start(mod=1):
     global sec
@@ -65,14 +69,25 @@ def real():
     global sec
     sec = time.time()
 ##-EXPEREMENTAL 
-def test():
-    print('test')
-    pass
+class CommandSpase(object):
+    def __init__(self):
+        self.time = ''
+        self.real()
+    def real(self):
+        c.execute('select datetime("now")')
+        self.time = c.fetchone()[0]
+    def ls(self):
+        c.execute('select * from continuum')
+        for row in c:
+            print(' '.join(row))
+    def new(self):
+        pass
 def convert():
     content = os.listdir('.')
     print(content)
     pass
 ##-
+switch=CommandSpase()
 while True:
     try:
         cmd = input('{}> '.format(time.ctime(sec))).split()
@@ -92,6 +107,11 @@ while True:
                 break
             else:
                 pass
+        elif cmd[0] == 'test':
+            try:
+                eval('switch.'+cmd[1]+'()')
+            except AttributeError:
+                print('Нет атрибута '+cmd[1])
         elif cmd[0] == 'help':
             print(help)
         elif cmd[0] == 'fast':
